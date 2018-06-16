@@ -1,16 +1,22 @@
-#ifndef EDITOR_H
-#define EDITOR_H
+#pragma once
 
+#include <QPaintEvent>
+#include <QPainter>
 #include <QWidget>
+#include <QKeyEvent>
 
 class Editor : public QWidget {
   Q_OBJECT
+
 public:
   explicit Editor(QWidget* parent = nullptr);
 
-signals:
+protected:
+  void paintEvent(QPaintEvent* event) override;
+  void keyPressEvent(QKeyEvent* ev) override;
+  void drawTest(QPainter* qp);
 
-public slots:
+private:
+  QFont editorFont;
+  QVector<QString> lines;
 };
-
-#endif // EDITOR_H
