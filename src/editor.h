@@ -1,9 +1,11 @@
 #pragma once
 
+#include "line.h"
+
+#include <QKeyEvent>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QWidget>
-#include <QKeyEvent>
 
 class Editor : public QWidget {
   Q_OBJECT
@@ -17,6 +19,8 @@ protected:
   void drawTest(QPainter* qp);
 
 private:
+  void handleKeypress(int* key);
+
+  QVector<Line> lines;
   QFont editorFont;
-  QVector<QString> lines;
 };

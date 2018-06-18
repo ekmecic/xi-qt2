@@ -29,11 +29,13 @@ src = [
   'src/main.cpp',
   'src/mainwindow.cpp',
   'src/editor.cpp',
+  'src/line.cpp',
 ]
 
 headers = [
   'src/mainwindow.h',
   'src/editor.h',
+  'src/line.h',
 ]
 
 processed = qt5.preprocess(
