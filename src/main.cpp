@@ -2,7 +2,6 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QPushButton>
 #include <QVBoxLayout>
 
 int main(int argc, char* argv[]) {
