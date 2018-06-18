@@ -11,6 +11,11 @@ int main(int argc, char* argv[]) {
   Widget w;
   Editor editor(&w);
 
+  // Make sure the window doesn't get too small
+  // TODO: make the editor buffer readjust its size when the window size changes,
+  // then delete this line.
+  w.setMinimumSize(800, 600);
+
   // Create a vertical layout and add the editor widget to it
   QVBoxLayout vLayout;
   vLayout.setSpacing(0);
@@ -28,8 +33,6 @@ int main(int argc, char* argv[]) {
 
   // Set the focus policy for the editor so we can intercept keypresses
   editor.setFocusPolicy(Qt::ClickFocus);
-
-  w.resize(800, 600);
 
   return app.exec();
 }
