@@ -31,7 +31,7 @@ src = [
 ]
 
 headers = [
-  'src/editor.h',
+  'src/editor.hpp',
 ]
 
 processed = qt5.preprocess(

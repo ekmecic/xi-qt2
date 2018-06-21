@@ -1,4 +1,4 @@
-#include "editor.h"
+#include "editor.hpp"
 
 // Constructor for the editor god widget
 Editor::Editor(QWidget* parent) : QPlainTextEdit(parent) {
