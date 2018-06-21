@@ -7,6 +7,7 @@
 #include <QPlainTextEdit>
 #pragma GCC diagnostic pop
 
+#include <QTextCursor>
 #include <QTextDocument>
 
 class Editor : public QPlainTextEdit {
@@ -18,5 +19,6 @@ public:
 
 private:
   QTextDocument* doc;
+  QTextCursor*   cursor;
   QFont          editorFont;
 };
