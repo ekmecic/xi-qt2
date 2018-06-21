@@ -28,20 +28,25 @@ src = [
   'src/main.cpp',
   'src/editor.cpp',
   'src/rpc_handler.cpp',
+  'src/json_types.cpp',
 ]
 
-headers = [
+normal_headers = [
+  'src/json_types.hpp'
+]
+
+moc_headers = [
   'src/editor.hpp',
   'src/rpc_handler.hpp',
 ]
 
 processed = qt5.preprocess(
-  moc_headers : headers,
+  moc_headers : moc_headers,
   include_directories: inc,
 )
 
 add_project_arguments(flags, language: 'cpp')
 
-executable('xi-qt', src, processed,
+executable('xi-qt', src, normal_headers, processed,
            include_directories: inc,
            dependencies : qt5_dep)

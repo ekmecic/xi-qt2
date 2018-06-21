@@ -1,4 +1,5 @@
 #include "rpc_handler.hpp"
+#include "json_types.hpp"
 
 #include <QDebug>
 #include <QJsonDocument>
@@ -29,14 +30,7 @@ void RPCHandler::handleRPC() {
 }
 
 void RPCHandler::sendDummyJSON() {
-  QJsonObject object;
-  QJsonObject params;
-  params["config_dir"]        = "/home/emil/tmp";
-  params["client_extras_dir"] = "/home/emil/tmp";
-  object["params"]            = params;
-  object["method"]            = "client_started";
-
-  QJsonDocument doc(object);
+  QJsonDocument doc(xi_json::client_started("/home/emil/tmp", "/home/emil/tmp"));
   QString       json(doc.toJson(QJsonDocument::Compact) + "\n");
   xi_process->write(json.toUtf8());
   qDebug().noquote() << "Writing to Xi:  " << json;
