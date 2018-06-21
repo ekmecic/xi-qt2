@@ -1,13 +1,13 @@
 #include "editor.h"
-#include "mainwindow.h"
 
+#include <QWidget>
 #include <QApplication>
 #include <QVBoxLayout>
 
 int main(int argc, char* argv[]) {
   QApplication app(argc, argv);
 
-  Widget w;
+  QWidget w;
   Editor editor(&w);
 
   // Create a vertical layout and add the editor widget to it, then

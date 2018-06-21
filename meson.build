@@ -27,12 +27,10 @@ flags = [
 
 src = [
   'src/main.cpp',
-  'src/mainwindow.cpp',
   'src/editor.cpp',
 ]
 
 headers = [
-  'src/mainwindow.h',
   'src/editor.h',
 ]
 
