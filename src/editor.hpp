@@ -6,13 +6,13 @@
 // This prevents building with Werror, so I've disabled it for now.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wswitch-default"
-#include <QPlainTextEdit>
+#include <QTextEdit>
 #pragma GCC diagnostic pop
 
 #include <QTextCursor>
 #include <QTextDocument>
 
-class Editor : public QPlainTextEdit {
+class Editor : public QTextEdit {
   Q_OBJECT
 
 public:

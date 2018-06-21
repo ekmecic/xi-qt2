@@ -1,7 +1,7 @@
 #include "editor.hpp"
 
 // Constructor for the editor god widget
-Editor::Editor(QWidget* parent) : QPlainTextEdit(parent) {
+Editor::Editor(QWidget* parent) : QTextEdit(parent) {
   // Set the default font to be Fira Mono point size 9
   this->editor_font = QFont("Fira Mono", 9);
 
