@@ -11,7 +11,7 @@ RPCHandler::RPCHandler(QObject* parent) : QObject(parent) {
   this->xi_process->setProcessChannelMode(QProcess::MergedChannels);
   this->xi_process->start("xi-core");
 
-  connect(xi_process, &QProcess::readyReadStandardOutput, this, &RPCHandler::commsHandler);
+  connect(xi_process, &QProcess::readyReadStandardOutput, this, &RPCHandler::handleRPC);
   xi_process->waitForStarted();
 
   sendDummyJSON();
@@ -23,7 +23,7 @@ RPCHandler::~RPCHandler() {
   delete this->xi_process;
 }
 
-void RPCHandler::commsHandler() {
+void RPCHandler::handleRPC() {
   QByteArray outData = xi_process->readAllStandardOutput();
   qDebug().noquote() << "Reading from Xi:" << QString(outData);
 }

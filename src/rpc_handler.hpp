@@ -11,7 +11,7 @@ public:
   ~RPCHandler();
 
 public slots:
-  void commsHandler();
+  void handleRPC();
 
 private:
   QProcess* xi_process;
