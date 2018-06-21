@@ -15,7 +15,6 @@ flags = [
   '-Wmissing-declarations',
   '-Wmissing-include-dirs',
   '-Wswitch-enum',
-  '-Wswitch-default',
   '-Winvalid-pch',
   '-Wredundant-decls',
   '-Wformat=2',
