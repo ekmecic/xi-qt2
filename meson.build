@@ -28,10 +28,12 @@ flags = [
 src = [
   'src/main.cpp',
   'src/editor.cpp',
+  'src/rpc_handler.cpp',
 ]
 
 headers = [
   'src/editor.hpp',
+  'src/rpc_handler.hpp',
 ]
 
 processed = qt5.preprocess(
