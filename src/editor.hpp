@@ -20,5 +20,5 @@ public:
 private:
   QTextDocument* doc;
   QTextCursor*   cursor;
-  QFont          editorFont;
+  QFont          editor_font;
 };
