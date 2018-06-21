@@ -6,11 +6,14 @@ Editor::Editor(QWidget* parent) : QPlainTextEdit(parent) {
   this->editor_font = QFont("Fira Mono", 9);
 
   // Initialize the child document object and its cursor
-  this->doc = this->document();
+  this->doc    = this->document();
   this->cursor = new QTextCursor(this->doc);
 
   // Set the default widget font to what was selected above
   this->doc->setDefaultFont(this->editor_font);
+
+  // Start Xi process
+  this->xi = new RPCHandler(this);
 }
 
 Editor::~Editor() {
