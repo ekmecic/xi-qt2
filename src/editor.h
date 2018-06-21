@@ -1,6 +1,12 @@
 #pragma once
 
+// QPlainTextEdit includes QTextFormat which has a Wswitch-default warning.
+// This prevents building with Werror, so I've disabled it for now.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wswitch-default"
 #include <QPlainTextEdit>
+#pragma GCC diagnostic pop
+
 #include <QTextDocument>
 
 class Editor : public QPlainTextEdit {

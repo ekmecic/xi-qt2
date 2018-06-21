@@ -8,7 +8,7 @@ inc = include_directories('src')
 flags = [
   '-Wall',
   '-Wextra',
-  # '-Werror',
+  '-Werror',
   '-pedantic',
   '-Wredundant-decls',
   '-Wcast-align',
