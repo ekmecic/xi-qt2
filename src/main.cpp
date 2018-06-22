@@ -1,13 +1,16 @@
 #include "editor.hpp"
 
 #include <QApplication>
+#include <QIcon>
 #include <QVBoxLayout>
 #include <QWidget>
 
 int main(int argc, char* argv[]) {
   QApplication app(argc, argv);
-  QWidget w;
-  Editor  editor(&w);
+  QWidget      w;
+  Editor       editor(&w);
+
+  app.setWindowIcon(QIcon("../assets/xi-qt2-logo.svg"));
 
   // Create a vertical layout and add the editor widget to it, then
   // remove the margin around the editor widget
