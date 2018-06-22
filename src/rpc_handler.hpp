@@ -16,5 +16,7 @@ public slots:
 private:
   QProcess* xi_process;
 
-  void sendDummyJSON();
+  void sendClientStarted(QString config_dir, QString client_extras_dir);
+  void sendNewView(QString file_path);
+  void sendToXi(QJsonObject object);
 };

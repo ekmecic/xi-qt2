@@ -1,7 +1,12 @@
 project('xi-qt', 'cpp', default_options : 'cpp_std=c++17')
 
+if get_option('buildtype').startswith('debug')
+  add_project_arguments('-DXI_QT_DEBUG', language : 'cpp')
+endif
+
 qt5 = import('qt5')
 qt5_dep = dependency('qt5', modules: ['Core', 'Gui', 'Widgets'])
+
 
 inc = include_directories('src')
 
