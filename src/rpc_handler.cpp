@@ -11,9 +11,10 @@ RPCHandler::RPCHandler(QObject* parent) : QObject(parent) {
   this->xi_process = new QProcess(this);
   this->xi_process->setProcessChannelMode(QProcess::MergedChannels);
   this->xi_process->start("xi-core");
+  this->xi_process->waitForStarted();
 
+  // Handle any standard output from Xi with the handleRPC function
   connect(xi_process, &QProcess::readyReadStandardOutput, this, &RPCHandler::handleRPC);
-  xi_process->waitForStarted();
 
   // Tell Xi that there's a new client connected
   sendClientStarted("/home/emil/tmp", "/home/emil/tmp");
