@@ -48,6 +48,7 @@ moc_headers = [
 processed = qt5.preprocess(
   moc_headers : moc_headers,
   include_directories: inc,
+  qresources  : 'assets/resources.qrc',
 )
 
 add_project_arguments(flags, language: 'cpp')

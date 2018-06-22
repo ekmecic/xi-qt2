@@ -10,8 +10,6 @@ int main(int argc, char* argv[]) {
   QWidget      w;
   Editor       editor(&w);
 
-  app.setWindowIcon(QIcon("../assets/xi-qt2-logo.svg"));
-
   // Create a vertical layout and add the editor widget to it, then
   // remove the margin around the editor widget
   QVBoxLayout layout(&w);
@@ -21,6 +19,9 @@ int main(int argc, char* argv[]) {
   // Remove the thin blue focus border around the editor widget
   app.setStyleSheet("Editor { outline: 0; }");
   app.setStyleSheet("Editor { border: 0; }");
+
+  // Set the icon of the window to QRC-compiled SVG logo
+  app.setWindowIcon(QIcon(":/xi-qt2-logo.svg"));
 
   // Make sure the window doesn't get too small
   w.setMinimumSize(800, 600);
