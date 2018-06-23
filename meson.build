@@ -34,15 +34,18 @@ src = [
   'src/editor.cpp',
   'src/rpc_handler.cpp',
   'src/json_types.cpp',
+  'src/view.cpp',
 ]
 
 normal_headers = [
-  'src/json_types.hpp'
+  'src/json_types.hpp',
+  'src/global_types.hpp',
 ]
 
 moc_headers = [
   'src/editor.hpp',
   'src/rpc_handler.hpp',
+  'src/view.hpp',
 ]
 
 processed = qt5.preprocess(

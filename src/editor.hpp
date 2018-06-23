@@ -1,11 +1,11 @@
 #pragma once
 
 #include "rpc_handler.hpp"
+#include "view.hpp"
 
-#include <QTextCursor>
-#include <QTextDocument>
-#include <QTextEdit>
 #include <QMenuBar>
+#include <QTextEdit>
+#include <QVector>
 
 class Editor : public QTextEdit {
   Q_OBJECT
@@ -21,9 +21,8 @@ private slots:
 private:
   void initMenubar();
 
-  QTextDocument* doc;
-  QTextCursor*   cursor;
-  QFont          editor_font;
+  QVector<View> views;
+  QFont         editor_font;
 
   RPCHandler* xi;
 };

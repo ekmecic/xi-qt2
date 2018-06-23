@@ -8,13 +8,6 @@ Editor::Editor(QWidget* parent) : QTextEdit(parent) {
   // Set the default font to be Fira Mono point size 9
   this->editor_font = QFont("Fira Mono", 9);
 
-
-  // Initialize the child document object and its cursor
-  this->doc    = this->document();
-  this->cursor = new QTextCursor(this->doc);
-
-  // Set the default widget font to what was selected above
-  this->doc->setDefaultFont(this->editor_font);
   // Initialize the menubar
   this->initMenubar();
 
@@ -24,8 +17,6 @@ Editor::Editor(QWidget* parent) : QTextEdit(parent) {
 
 Editor::~Editor() {
   delete this->menubar;
-  delete this->doc;
-  delete this->cursor;
 }
 
 void Editor::newView() {
