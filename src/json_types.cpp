@@ -17,6 +17,7 @@ QJsonObject xi_json::new_view(QString file_path) {
   return_object_params["file_path"] = file_path;
 
   QJsonObject return_object;
+  return_object["id"] = 0;
   return_object["method"] = "new_view";
   return_object["params"] = return_object_params;
 
