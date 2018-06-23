@@ -1,0 +1,10 @@
+pipeline:
+  build:
+    image: ubuntu:18.04
+    commands:
+      - apt update
+      - apt install -y build-essential meson ninja-build qt5-default
+      - mkdir build
+      - cd build
+      - meson ..
+      - ninja
