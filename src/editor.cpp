@@ -1,6 +1,7 @@
 #include "editor.hpp"
 
 #include <QAction>
+#include <QFileDialog>
 #include <QMenu>
 
 // Constructor for the editor god widget
@@ -20,7 +21,8 @@ Editor::~Editor() {
 }
 
 void Editor::newView() {
-  this->xi->sendNewView("/home/emil/.zshrc");
+  QString file_name = QFileDialog::getOpenFileName(this, "Open file");
+  this->xi->sendNewView(file_name);
 }
 
 void Editor::initMenubar() {
