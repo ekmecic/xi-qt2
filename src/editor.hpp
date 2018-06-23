@@ -5,6 +5,7 @@
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTextEdit>
+#include <QMenuBar>
 
 class Editor : public QTextEdit {
   Q_OBJECT
@@ -12,8 +13,14 @@ class Editor : public QTextEdit {
 public:
   explicit Editor(QWidget* parent = nullptr);
   ~Editor();
+  QMenuBar* menubar;
+
+private slots:
+  void newView();
 
 private:
+  void initMenubar();
+
   QTextDocument* doc;
   QTextCursor*   cursor;
   QFont          editor_font;
