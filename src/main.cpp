@@ -28,7 +28,6 @@ int main(int argc, char* argv[]) {
 
   // Display the window with its child widgets
   w.show();
-  editor.show();
 
   return app.exec();
 }
