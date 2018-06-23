@@ -39,13 +39,13 @@ void RPCHandler::handleRPC() {
 
 // Create and send a client_started JSON message
 void RPCHandler::sendClientStarted(QString config_dir, QString client_extras_dir) {
-  QJsonObject msg = xi_json::client_started(config_dir, client_extras_dir);
+  QJsonObject msg = xi_json::out::client_started(config_dir, client_extras_dir);
   sendToXi(msg);
 }
 
 // Create and send a new_view JSON message
 void RPCHandler::sendNewView(QString file_path) {
-  QJsonObject msg = xi_json::new_view(file_path);
+  QJsonObject msg = xi_json::out::new_view(file_path);
   sendToXi(msg);
 }
 
