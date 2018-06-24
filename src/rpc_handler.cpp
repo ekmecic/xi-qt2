@@ -1,10 +1,13 @@
 #include "rpc_handler.hpp"
 #include "json_types.hpp"
 
-#include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QString>
+
+#ifdef XI_QT_DEBUG
+#include <QDebug>
+#endif
 
 RPCHandler::RPCHandler(QObject* parent) : QObject(parent) {
   // Start an instance of xi-core
