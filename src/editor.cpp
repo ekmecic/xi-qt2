@@ -29,7 +29,7 @@ void Editor::newView() {
   // Use a file picker dialog to get the filename
   QString file_name = QFileDialog::getOpenFileName(this, "Open file");
   // Create a new view with a temporary view-id, and append it to the Editor's list
-  View* this_view = new View(file_name, 0); // 0 == unassigned view-id
+  View* this_view = new View(file_name, "uninitialized");
   this->views.append(this_view);
   // Send the message to xi-core
   this->xi->sendNewView(file_name);

@@ -1,6 +1,6 @@
 #include "view.hpp"
 
-View::View(QString file_name, u64 view_id) {
+View::View(QString file_name, QString view_id) {
   this->file_name = file_name;
   this->view_id   = view_id;
   this->doc       = new QTextDocument();
