@@ -1,6 +1,8 @@
 #include "editor.hpp"
+#include "json_types.hpp"
 
 #include <QAction>
+#include <QDebug>
 #include <QFileDialog>
 #include <QMenu>
 
@@ -14,6 +16,9 @@ Editor::Editor(QWidget* parent) : QTextEdit(parent) {
 
   // Start Xi process
   this->xi = new RPCHandler(this);
+
+  // Delegate any new messages when the RPC receives them
+  connect(this->xi, &RPCHandler::newMsg, this, &Editor::newMsgHandler);
 }
 
 Editor::~Editor() {
@@ -47,4 +52,37 @@ void Editor::initMenubar() {
   connect(new_view, &QAction::triggered, this, &Editor::newView);
   file_menu->addAction(new_view);
   this->menubar->addMenu(file_menu);
+}
+
+void Editor::newMsgHandler(QJsonObject msg) {
+  // Handle the xi-core response to new_view
+  if (msg["result"].isString()) {
+    // Find a view with an uninitialized view-id and assign it this view-id
+    for (auto view : views) {
+      if (view->view_id == "uninitialized") {
+        view->view_id = msg["result"].toString();
+      }
+    }
+    return;
+  }
+
+  // Otherwise, it's a "heavier" message from xi and we delegate it to other functions
+  // Convert the method string into an enum variant using the method_map QMap
+  switch (xi_method_map[msg["method"].toString()]) {
+  // Intentional fall-through on all unimplemented methods
+  case XiMethod::set_style:
+  case XiMethod::scroll_to:
+  case XiMethod::update:
+  case XiMethod::theme_changed:
+  case XiMethod::config_changed:
+  case XiMethod::available_plugins:
+  case XiMethod::plugin_started:
+  case XiMethod::plugin_stopped:
+  case XiMethod::update_cmds:
+  case XiMethod::add_status_item:
+  case XiMethod::update_status_item:
+  case XiMethod::remove_status_item:
+  default:
+    qInfo() << "Received" << msg["method"].toString() << "method, but no handler exists for it yet";
+  }
 }

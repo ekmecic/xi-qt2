@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QJsonObject>
 #include <QObject>
 #include <QProcess>
 
@@ -14,6 +15,9 @@ public:
   void sendClientStarted(QString config_dir, QString client_extras_dir);
   void sendNewView(QString file_path);
   void sendToXi(QJsonObject object);
+
+signals:
+  void newMsg(QJsonObject msg);
 
 public slots:
   void handleRPC();

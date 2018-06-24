@@ -31,10 +31,12 @@ RPCHandler::~RPCHandler() {
 
 void RPCHandler::handleRPC() {
   while (this->xi_process->bytesAvailable()) {
-    QJsonDocument doc = QJsonDocument::fromJson(this->xi_process->readLine());
+    QJsonObject msg = QJsonDocument::fromJson(this->xi_process->readLine()).object();
+    emit        newMsg(msg);
 
 #ifdef XI_QT_DEBUG
-    QString pretty_json_str(doc.toJson(QJsonDocument::Indented) + "\n");
+    QJsonDocument doc(msg);
+    QString       pretty_json_str(doc.toJson(QJsonDocument::Indented) + "\n");
     qDebug().noquote().nospace() << "\033[91mRPC Read:\033[0m\n" << pretty_json_str.trimmed();
 #endif
   }
