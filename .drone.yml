@@ -1,10 +1,9 @@
 pipeline:
   build:
-    image: ubuntu:18.04
+    image: ekmecic/qt-meson:latest
     commands:
-      - apt update
-      - apt install -y build-essential meson ninja-build qt5-default
       - mkdir build
       - cd build
       - meson ..
+      - meson configure -Dcpp_std c++1z
       - ninja
