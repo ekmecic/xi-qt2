@@ -21,8 +21,8 @@ private slots:
 private:
   void initMenubar();
 
-  QVector<View> views;
-  QFont         editor_font;
+  QVector<View*> views;
+  QFont          editor_font;
 
   RPCHandler* xi;
 };

@@ -2,20 +2,18 @@
 
 #include "global_types.hpp"
 
-#include <QObject>
 #include <QTextCursor>
 #include <QTextDocument>
 
-class View : public QObject {
-  Q_OBJECT
-
+class View {
 public:
   // Constructures and destructors
-  explicit View(u64 view_id, QObject* parent = nullptr);
+  explicit View(QString file_name, u64 view_id);
   ~View();
 
   // Member variables
+  QString        file_name;
+  u64            view_id;
   QTextDocument* doc;
   QTextCursor*   cursor;
-  u64            view_id;
 };
