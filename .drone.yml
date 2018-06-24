@@ -5,5 +5,5 @@ pipeline:
       - mkdir build
       - cd build
       - meson ..
-      - meson configure -Dcpp_std c++1z
+      - meson configure -Dcpp_std=c++1z
       - ninja
