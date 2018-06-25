@@ -1,9 +1,20 @@
 pipeline:
-  build:
+  debug:
+    group: build  # parallel execution
     image: ekmecic/qt-meson:latest
     commands:
-      - mkdir build
-      - cd build
+      - mkdir build-debug
+      - cd build-debug
+      - meson ..
+      - meson configure -Dcpp_std=c++1z
+      - ninja
+
+  release:
+    group: build  # parallel execution
+    image: ekmecic/qt-meson:latest
+    commands:
+      - mkdir build-release
+      - cd build-release
       - meson ..
       - meson configure -Dcpp_std=c++1z
       - ninja
