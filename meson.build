@@ -56,6 +56,6 @@ processed = qt5.preprocess(
 
 add_project_arguments(flags, language: 'cpp')
 
-executable('xi-qt', src, normal_headers, processed,
+executable('xi-qt2', src, normal_headers, processed,
            include_directories: inc,
            dependencies : qt5_dep)
