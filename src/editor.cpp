@@ -68,11 +68,26 @@ void Editor::newMsgHandler(QJsonObject msg) {
 
   // Otherwise, it's a "heavier" message from xi and we delegate it to other functions
   // Convert the method string into an enum variant using the method_map QMap
-  switch (xi_method_map[msg["method"].toString()]) {
+  XiMethod method = xi_method_map[msg.value("method").toString()];
+  switch (method) {
+  case XiMethod::update: {
+    // Deserialize the JSON update message into a usable struct
+    xi_json::in::update current_update;
+    current_update.read(msg);
+
+    // Find the view this message is for
+    for (auto view : this->views) {
+      if (current_update.view_id == view->view_id) {
+        // Update the view with the data from the update
+        view->updateView(current_update);
+        this->setDocument(view->doc);
+      }
+    }
+    break;
+  }
   // Intentional fall-through on all unimplemented methods
   case XiMethod::set_style:
   case XiMethod::scroll_to:
-  case XiMethod::update:
   case XiMethod::theme_changed:
   case XiMethod::config_changed:
   case XiMethod::available_plugins:
