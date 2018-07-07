@@ -27,26 +27,26 @@ QJsonObject xi_json::out::new_view(const QString& file_path) {
 }
 
 void xi_json::in::new_view_response::read(const QJsonObject& json) {
-  this->id      = json.value("id").toString();
-  this->view_id = json.value("view_id").toString();
+  this->id      = json["id"].toString();
+  this->view_id = json["view_id"].toString();
 }
 
 void xi_json::in::update_op::read(const QJsonObject& json) {
-  this->update_op_type     = xi_update_op_map[json.value("op").toString()];
-  this->num_lines_affected = json.value("n").toInt();
-  for (QJsonValue line : json.value("lines").toArray()) {
-    QString new_line = QString(line.toObject().value("text").toString());
+  this->update_op_type     = xi_update_op_map[json["op"].toString()];
+  this->num_lines_affected = json["n"].toInt();
+  for (QJsonValue line : json["lines"].toArray()) {
+    QString new_line = QString(line.toObject()["text"].toString());
     this->lines.push_back(new_line);
   }
 }
 
 void xi_json::in::update::read(const QJsonObject& json) {
-  QJsonObject params = json.value("params").toObject();
-  QJsonObject update = params.value("update").toObject();
-  this->view_id      = params.value("view_id").toString();
-  this->pristine     = update.value("pristine").toBool();
+  QJsonObject params = json["params"].toObject();
+  QJsonObject update = params["update"].toObject();
+  this->view_id      = params["view_id"].toString();
+  this->pristine     = update["pristine"].toBool();
 
-  QJsonArray ops = update.value("ops").toArray();
+  QJsonArray ops = update["ops"].toArray();
 
   for (QJsonValue op : ops) {
     xi_json::in::update_op* current_op = new xi_json::in::update_op;

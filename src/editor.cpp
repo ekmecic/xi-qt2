@@ -68,7 +68,7 @@ void Editor::newMsgHandler(const QJsonObject msg) {
 
   // Otherwise, it's a "heavier" message from xi and we delegate it to other functions
   // Convert the method string into an enum variant using the method_map QMap
-  XiMethod method = xi_method_map[msg.value("method").toString()];
+  XiMethod method = xi_method_map[msg["method"].toString()];
   switch (method) {
   case XiMethod::update: {
     // Deserialize the JSON update message into a usable struct
