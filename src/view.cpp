@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-View::View(QString file_name, QString view_id) {
+View::View(const QString& file_name, const QString& view_id) {
   this->file_name = file_name;
   this->view_id   = view_id;
   this->doc       = new QTextDocument;
@@ -15,7 +15,7 @@ View::~View() {
 }
 
 // Update this view's line cache with the update stuff
-void View::updateView(xi_json::in::update& current_update) {
+void View::updateView(const xi_json::in::update& current_update) {
   // Iterate over each op in the update message
   for (auto op : current_update.update_ops) {
     switch (op->update_op_type) {

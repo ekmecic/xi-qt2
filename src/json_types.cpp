@@ -2,7 +2,7 @@
 
 #include <QJsonArray>
 
-QJsonObject xi_json::out::client_started(QString config_dir, QString client_extras_dir) {
+QJsonObject xi_json::out::client_started(const QString& config_dir, const QString& client_extras_dir) {
   QJsonObject return_object_params;
   return_object_params["config_dir"]        = config_dir;
   return_object_params["client_extras_dir"] = client_extras_dir;
@@ -14,7 +14,7 @@ QJsonObject xi_json::out::client_started(QString config_dir, QString client_extr
   return return_object;
 }
 
-QJsonObject xi_json::out::new_view(QString file_path) {
+QJsonObject xi_json::out::new_view(const QString& file_path) {
   QJsonObject return_object_params;
   return_object_params["file_path"] = file_path;
 
@@ -26,12 +26,12 @@ QJsonObject xi_json::out::new_view(QString file_path) {
   return return_object;
 }
 
-void xi_json::in::new_view_response::read(QJsonObject json) {
+void xi_json::in::new_view_response::read(const QJsonObject& json) {
   this->id      = json.value("id").toString();
   this->view_id = json.value("view_id").toString();
 }
 
-void xi_json::in::update_op::read(QJsonObject json) {
+void xi_json::in::update_op::read(const QJsonObject& json) {
   this->update_op_type     = xi_update_op_map[json.value("op").toString()];
   this->num_lines_affected = json.value("n").toInt();
   for (QJsonValue line : json.value("lines").toArray()) {
@@ -40,7 +40,7 @@ void xi_json::in::update_op::read(QJsonObject json) {
   }
 }
 
-void xi_json::in::update::read(QJsonObject json) {
+void xi_json::in::update::read(const QJsonObject& json) {
   QJsonObject params = json.value("params").toObject();
   QJsonObject update = params.value("update").toObject();
   this->view_id      = params.value("view_id").toString();

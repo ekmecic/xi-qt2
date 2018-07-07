@@ -17,7 +17,7 @@ public:
 
 private slots:
   void newView();
-  void newMsgHandler(QJsonObject msg);
+  void newMsgHandler(const QJsonObject msg);
 
 private:
   void initMenubar();

@@ -8,9 +8,9 @@
 class View {
 public:
   // Constructures and destructors
-  explicit View(QString file_name, QString view_id);
+  explicit View(const QString& file_name, const QString& view_id);
   ~View();
-  void updateView(xi_json::in::update& current_update);
+  void updateView(const xi_json::in::update& current_update);
 
   // Member variables
   QString        file_name;

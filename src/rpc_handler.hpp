@@ -12,12 +12,12 @@ public:
   ~RPCHandler();
 
   // RPC methods
-  void sendClientStarted(QString config_dir, QString client_extras_dir);
-  void sendNewView(QString file_path);
-  void sendToXi(QJsonObject object);
+  void sendClientStarted(const QString& config_dir, const QString& client_extras_dir);
+  void sendNewView(const QString& file_path);
+  void sendToXi(const QJsonObject& object);
 
 signals:
-  void newMsg(QJsonObject msg);
+  void newMsg(const QJsonObject& msg);
 
 public slots:
   void handleRPC();

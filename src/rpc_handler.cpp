@@ -43,19 +43,19 @@ void RPCHandler::handleRPC() {
 }
 
 // Create and send a client_started JSON message
-void RPCHandler::sendClientStarted(QString config_dir, QString client_extras_dir) {
+void RPCHandler::sendClientStarted(const QString& config_dir, const QString& client_extras_dir) {
   QJsonObject msg = xi_json::out::client_started(config_dir, client_extras_dir);
   sendToXi(msg);
 }
 
 // Create and send a new_view JSON message
-void RPCHandler::sendNewView(QString file_path) {
+void RPCHandler::sendNewView(const QString& file_path) {
   QJsonObject msg = xi_json::out::new_view(file_path);
   sendToXi(msg);
 }
 
 // Serialize a QJsonObject into a string and send it to Xi's stdin
-void RPCHandler::sendToXi(QJsonObject object) {
+void RPCHandler::sendToXi(const QJsonObject& object) {
   // Convert the JSON object to a string
   QJsonDocument doc(object);
   QString       json_str(doc.toJson(QJsonDocument::Compact) + "\n");

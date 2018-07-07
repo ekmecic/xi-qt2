@@ -59,8 +59,8 @@ const QMap<QString, XiUpdateOp> xi_update_op_map = {
 
 // Messages sent from xi-qt2 to xi-core
 namespace xi_json::out {
-QJsonObject client_started(QString config_dir, QString client_extras_dir);
-QJsonObject new_view(QString file_path);
+QJsonObject client_started(const QString& config_dir, const QString& client_extras_dir);
+QJsonObject new_view(const QString& file_path);
 } // namespace xi_json::out
 
 // Messages sent from xi-core to xi-qt2
@@ -69,7 +69,7 @@ namespace xi_json::in {
 typedef struct new_view_response {
   QString id;
   QString view_id;
-  void    read(QJsonObject json);
+  void    read(const QJsonObject& json);
 } new_view_response;
 
 // Deserialized form of an update operation
@@ -78,7 +78,7 @@ typedef struct update_op {
   XiUpdateOp       update_op_type;
   u64              num_lines_affected;
   QVector<QString> lines;
-  void             read(QJsonObject json);
+  void             read(const QJsonObject& json);
 } update_op;
 
 // Deserialized form of the update XiMethod
@@ -87,7 +87,7 @@ typedef struct update {
   QString             view_id;
   bool                pristine;
   QVector<update_op*> update_ops;
-  void                read(QJsonObject json);
+  void                read(const QJsonObject& json);
   ~update();
 } update;
 } // namespace xi_json::in

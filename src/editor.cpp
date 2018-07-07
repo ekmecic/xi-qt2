@@ -54,7 +54,7 @@ void Editor::initMenubar() {
   this->menubar->addMenu(file_menu);
 }
 
-void Editor::newMsgHandler(QJsonObject msg) {
+void Editor::newMsgHandler(const QJsonObject msg) {
   // Handle the xi-core response to new_view
   if (msg["result"].isString()) {
     // Find a view with an uninitialized view-id and assign it this view-id
