@@ -4,6 +4,7 @@
 #include "view.hpp"
 
 #include <QMenuBar>
+#include <QPair>
 #include <QTextEdit>
 #include <QVector>
 
@@ -20,7 +21,8 @@ private slots:
   void newMsgHandler(const QJsonObject msg);
 
 private:
-  void initMenubar();
+  void            initMenubar();
+  QPair<u64, u64> currentlyVisibleLines();
 
   QVector<View*> views;
   QFont          editor_font;

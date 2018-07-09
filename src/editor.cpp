@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMenu>
+#include <QTextBlock>
 
 // Constructor for the editor god widget
 Editor::Editor(QWidget* parent) : QTextEdit(parent) {
@@ -59,6 +60,23 @@ void Editor::initMenubar() {
   connect(debug_fxn, &QAction::triggered, this, &Editor::debugFunction);
   this->menubar->addAction(debug_fxn);
 #endif
+}
+
+// Returns the index of the top and bottom line currently visible in the editor
+QPair<u64, u64> Editor::currentlyVisibleLines() {
+  // Put a cursor at the top of the viewport and get its line number
+  u64 top_line = this->cursorForPosition(QPoint(0, 0)).block().firstLineNumber();
+
+  // Get the height of the window and each line of text from the font its using
+  // Note: assumes that all text has the same font
+  // Note: a wrapped line that spans n lines counts as n, not 1
+  u64 window_height = this->height();
+  u64 line_height   = QFontMetrics(this->document()->firstBlock().charFormat().font()).height();
+
+  // Calculate the number of lines that fit in the window and the index of the bottom line
+  u64 num_lines   = window_height / line_height;
+  u64 bottom_line = top_line + num_lines;
+  return QPair<u64, u64>(top_line, bottom_line);
 }
 
 void Editor::newMsgHandler(const QJsonObject msg) {
