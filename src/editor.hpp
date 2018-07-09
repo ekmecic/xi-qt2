@@ -26,4 +26,11 @@ private:
   QFont          editor_font;
 
   RPCHandler* xi;
+
+#ifdef XI_QT_DEBUG
+private slots:
+  // When built in debug mode, a special button appears in the menubar that calls this function when pressed
+  // This is used for general debugging and prototyping during development
+  void debugFunction();
+#endif
 };

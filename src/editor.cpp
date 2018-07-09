@@ -52,6 +52,13 @@ void Editor::initMenubar() {
   connect(new_view, &QAction::triggered, this, &Editor::newView);
   file_menu->addAction(new_view);
   this->menubar->addMenu(file_menu);
+
+#ifdef XI_QT_DEBUG
+  // Add a utility function that triggers an arbitrary action
+  QAction* debug_fxn = new QAction("Debug button", file_menu);
+  connect(debug_fxn, &QAction::triggered, this, &Editor::debugFunction);
+  this->menubar->addAction(debug_fxn);
+#endif
 }
 
 void Editor::newMsgHandler(const QJsonObject msg) {
@@ -101,3 +108,9 @@ void Editor::newMsgHandler(const QJsonObject msg) {
     qInfo() << "Received" << msg["method"].toString() << "method, but no handler exists for it yet";
   }
 }
+
+#ifdef XI_QT_DEBUG
+void Editor::debugFunction() {
+  // Debug button code goes here
+}
+#endif
