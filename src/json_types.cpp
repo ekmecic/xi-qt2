@@ -26,6 +26,20 @@ QJsonObject xi_json::out::new_view(const QString& file_path) {
   return return_object;
 }
 
+QJsonObject xi_json::out::scroll(const QString& view_id, const i32& top_line, const i32& bottom_line) {
+  QJsonObject return_object_params;
+  QJsonArray  line_array          = {top_line, bottom_line};
+  return_object_params["method"]  = "scroll";
+  return_object_params["params"]  = line_array;
+  return_object_params["view_id"] = view_id;
+
+  QJsonObject return_object;
+  return_object["method"] = "edit";
+  return_object["params"] = return_object_params;
+
+  return return_object;
+}
+
 void xi_json::in::new_view_response::read(const QJsonObject& json) {
   this->id      = json["id"].toString();
   this->view_id = json["view_id"].toString();

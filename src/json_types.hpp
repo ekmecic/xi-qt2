@@ -61,6 +61,7 @@ const QMap<QString, XiUpdateOp> xi_update_op_map = {
 namespace xi_json::out {
 QJsonObject client_started(const QString& config_dir, const QString& client_extras_dir);
 QJsonObject new_view(const QString& file_path);
+QJsonObject scroll(const QString& view_id, const i32& top_line, const i32& bottom_line);
 } // namespace xi_json::out
 
 // Messages sent from xi-core to xi-qt2

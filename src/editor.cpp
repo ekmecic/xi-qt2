@@ -20,6 +20,9 @@ Editor::Editor(QWidget* parent) : QTextEdit(parent) {
 
   // Delegate any new messages when the RPC receives them
   connect(this->xi, &RPCHandler::newMsg, this, &Editor::newMsgHandler);
+
+  // Handle any scrolling
+  connect(this->verticalScrollBar(), &QScrollBar::valueChanged, this, &Editor::scrollHandler);
 }
 
 Editor::~Editor() {
@@ -86,6 +89,11 @@ void Editor::newMsgHandler(const QJsonObject msg) {
     for (auto view : views) {
       if (view->view_id == "uninitialized") {
         view->view_id = msg["result"].toString();
+
+        // Send a message that indicates the current size of the buffer
+        QPair<u64, u64> lines      = this->currentlyVisibleLines();
+        QJsonObject     scroll_msg = xi_json::out::scroll(view->view_id, lines.first, lines.second);
+        this->xi->sendToXi(scroll_msg);
       }
     }
     return;
@@ -125,6 +133,12 @@ void Editor::newMsgHandler(const QJsonObject msg) {
   default:
     qInfo() << "Received" << msg["method"].toString() << "method, but no handler exists for it yet";
   }
+}
+
+void Editor::scrollHandler() {
+  QPair<u64, u64> lines      = this->currentlyVisibleLines();
+  QJsonObject     scroll_msg = xi_json::out::scroll("view-id-1", lines.first, lines.second);
+  this->xi->sendToXi(scroll_msg);
 }
 
 #ifdef XI_QT_DEBUG

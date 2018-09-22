@@ -5,6 +5,7 @@
 
 #include <QMenuBar>
 #include <QPair>
+#include <QScrollBar>
 #include <QTextEdit>
 #include <QVector>
 
@@ -19,6 +20,7 @@ public:
 private slots:
   void newView();
   void newMsgHandler(const QJsonObject msg);
+  void scrollHandler();
 
 private:
   void            initMenubar();

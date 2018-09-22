@@ -1,5 +1,6 @@
 #pragma once
 
+#include "global_types.hpp"
 #include "json_types.hpp"
 
 #include <QTextCursor>
@@ -17,4 +18,10 @@ public:
   QString        view_id;
   QTextDocument* doc;
   QTextCursor*   cursor;
+
+private:
+  QVector<QString> lines;
+  u64              num_lines      = 0;
+  u64              nInvalidBefore = 0;
+  u64              nInvalidAfter  = 0;
 };
